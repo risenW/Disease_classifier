@@ -10,8 +10,11 @@ from .models import Classifier
 media_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'media_cdn/images')
 
 # Model names
-indian_model_name = 'pneumonia'
-western_model_name = 'malaria'
+pneumonia_model = 'pneumonia.h5'
+malaria_model = 'malaria.h5'
+
+#path to model
+model_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'models')
 
 # Create your views here.
 
@@ -40,8 +43,11 @@ def upload_img(request):
 def predict(request):
     # Preprocess image
     img_path = os.path.join(media_path, os.listdir(media_path)[0])
-    print(img_path)
-    print(request.GET.get('category'))
+    pnue_path = os.path.join(model_path, os.listdir(model_path)[0])
+
+    print("IMAGE PATH: " + img_path)
+    print("CATEGORY: " + request.GET.get('category'))
+    print("P MODEL PATH: " + pnue_path)
 
 
     return render(request, 'classifier/result.html')
