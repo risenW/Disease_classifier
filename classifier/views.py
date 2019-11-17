@@ -6,15 +6,24 @@ import os
 from .forms import ClassifierForm
 from .models import Classifier
 
+#import for deep learning
+from keras.models import load_model
+from PIL import Image
+from PIL import Image
+import numpy as np
+import os
+import cv2
+
+#Fixes the path error thrown by load model in keras==2.3.1
+import keras.backend.tensorflow_backend as tb
+tb._SYMBOLIC_SCOPE.value = True
+
 # Path to input image
 media_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'media_cdn/images')
 
 # Model names
-pneumonia_model = 'pneumonia.h5'
-malaria_model = 'malaria.h5'
-
-#path to model
-model_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'models')
+pneumonia_model = './models/pneumonia_model.h5'
+malaria_model = './models/malaria.h5'
 
 # Create your views here.
 
@@ -43,14 +52,51 @@ def upload_img(request):
 def predict(request):
     # Preprocess image
     img_path = os.path.join(media_path, os.listdir(media_path)[0])
-    pnue_path = os.path.join(model_path, os.listdir(model_path)[0])
+    # pnue_model = os.path.join(model_path, os.listdir(model_path)[0])
 
+    category = request.GET.get('category')
     print("IMAGE PATH: " + img_path)
     print("CATEGORY: " + request.GET.get('category'))
-    print("P MODEL PATH: " + pnue_path)
+
+    model = load_model(pneumonia_model)
+    print(model.summary)
+
+    # if category is 'MC':
+    #     print("Classifier for malaria")
+
+    # else:
+    #     #Predict for Pnuemonia
+    #     img = preprocess_img(img_path)
+    #     model = load_model(pnue_model)
+    #     print("Making Predictions.....")
+    #     score = model.predict(img)
+    #     print("SCORE:" + score)
+
+    #     label_indx = np.argmax(score)
+    #     print("LABEL_INDEX: "+ label_indx)
+    #     accuracy = np.max(score)
+
+    #     label = get_label_name(label_indx)
+    #     print("THE PREDICTED CLASS IS " + label + "WITH ACCURACY OF "+ str(accuracy))
+
 
 
     return render(request, 'classifier/result.html')
+
+def preprocess_img(img):
+    img = cv2.imread(img)
+    img = Image.fromarray(img, 'RGB')
+    image = np.array(img.resize((150,150)))
+    #process
+    image = image/255
+    return image
+
+
+def get_label_name(label):
+    if label==0:
+        return "NORMAL"
+    if label==1:
+        return "PNEUMONIA"
 
 
 def clean_path(request):
