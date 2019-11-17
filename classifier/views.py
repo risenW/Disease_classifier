@@ -76,9 +76,13 @@ def predict(request):
         label = get_label_name(label_indx)
         print("THE PREDICTED CLASS IS " + label + " WITH ACCURACY OF "+ str(accuracy))
 
+        context = {
+            'label': label,
+            'accuracy': accuracy,
+            'imagepath': img_path
+        }
 
-
-    return render(request, 'classifier/result.html')
+    return render(request, 'classifier/result.html', context)
 
 def preprocess_img(img):
     img = cv2.imread(img)
