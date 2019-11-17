@@ -1,9 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
+import os
 
 from .forms import ClassifierForm
 from .models import Classifier
+
+# Path to input image
+media_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'media_cdn/images')
+
+# Model names
+indian_model_name = 'pneumonia'
+western_model_name = 'malaria'
+
 # Create your views here.
 
 def index(request):
@@ -28,5 +37,7 @@ def upload_img(request):
 
 
 def predict(request):
-    
+    # Preprocess image
+    img_path = os.path.join(media_path, os.listdir(media_path)[0])
+    print(img_path)
     return render(request, 'classifier/result.html')
