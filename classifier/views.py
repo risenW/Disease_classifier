@@ -58,26 +58,23 @@ def predict(request):
     print("IMAGE PATH: " + img_path)
     print("CATEGORY: " + request.GET.get('category'))
 
-    model = load_model(pneumonia_model)
-    print(model.summary)
+    if category == 'MC':
+        print("Classifier for malaria")
 
-    # if category is 'MC':
-    #     print("Classifier for malaria")
+    else:
+        #Predict for Pnuemonia
+        img = preprocess_img(img_path)
+        model = load_model(pneumonia_model)
+        print("Making Predictions.....")
+        score = model.predict(img)
+        print("SCORE:" + str(score))
 
-    # else:
-    #     #Predict for Pnuemonia
-    #     img = preprocess_img(img_path)
-    #     model = load_model(pnue_model)
-    #     print("Making Predictions.....")
-    #     score = model.predict(img)
-    #     print("SCORE:" + score)
+        label_indx = np.argmax(score)
+        print("LABEL_INDEX: "+ str(label_indx))
+        accuracy = np.max(score)
 
-    #     label_indx = np.argmax(score)
-    #     print("LABEL_INDEX: "+ label_indx)
-    #     accuracy = np.max(score)
-
-    #     label = get_label_name(label_indx)
-    #     print("THE PREDICTED CLASS IS " + label + "WITH ACCURACY OF "+ str(accuracy))
+        label = get_label_name(label_indx)
+        print("THE PREDICTED CLASS IS " + label + " WITH ACCURACY OF "+ str(accuracy))
 
 
 
@@ -89,7 +86,10 @@ def preprocess_img(img):
     image = np.array(img.resize((150,150)))
     #process
     image = image/255
-    return image
+    final_img = []
+    final_img.append(image)
+    final_img = np.array(final_img)
+    return final_img
 
 
 def get_label_name(label):
