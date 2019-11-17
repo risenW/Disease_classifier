@@ -6,6 +6,8 @@ def index(request):
     return render(request, 'classifier/index.html')
 
 
-
 def about(request):
     return render(request, 'classifier/about.html')
+
+def predict(request):
+    return render(request, 'classifier/predict.html')
