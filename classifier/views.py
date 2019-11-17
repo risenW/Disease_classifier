@@ -31,7 +31,8 @@ def upload_img(request):
         print("TYPE: " + form.cleaned_data['category'])
         m.save()
         
-        return HttpResponseRedirect('/classifier/predict')
+        category = form.cleaned_data['category']
+        return HttpResponseRedirect('/classifier/predict/?category=' + category)
 
     return render(request, 'classifier/upload_img.html', {'form': form})
 
@@ -40,4 +41,5 @@ def predict(request):
     # Preprocess image
     img_path = os.path.join(media_path, os.listdir(media_path)[0])
     print(img_path)
+    print(request.GET.get('category'))
     return render(request, 'classifier/result.html')
