@@ -42,4 +42,20 @@ def predict(request):
     img_path = os.path.join(media_path, os.listdir(media_path)[0])
     print(img_path)
     print(request.GET.get('category'))
+
+
     return render(request, 'classifier/result.html')
+
+
+def clean_path(request):
+    '''Cleans up image path'''
+    # Delete image instance from model
+    Classifier.objects.all().delete()
+
+    # Delete image from media directory
+    for img in os.listdir(media_path):
+        os.remove(os.path.join(media_path, img))
+
+    return HttpResponseRedirect('/')
+
+
