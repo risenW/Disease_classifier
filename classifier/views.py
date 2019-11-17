@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from . import forms
 # Create your views here.
 
 def index(request):
@@ -10,4 +10,5 @@ def about(request):
     return render(request, 'classifier/about.html')
 
 def predict(request):
-    return render(request, 'classifier/predict.html')
+    form = forms.ClassifierImage()
+    return render(request, 'classifier/predict.html', {'form': form})

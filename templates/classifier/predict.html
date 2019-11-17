@@ -1,78 +1,190 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Disease Classifier</title>
+    <title>Medizin Medical Category Bootstrap Responsive Web Template | Home :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Medizin Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
 
-<style>
-    .avatar-pic {
-    width: 150px;
-}
-
-</style>
-    
+    </script>
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/slider.css' %}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <!-- //Fonts -->
 </head>
+
 <body>
+        <!-- mian-content -->
+        <div class="main-w3layouts-header-sec">
 
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-10 textcenter" style="margin-top: 200px;">
-                    <form method="POST">
-                            <div class="form-group">
-                                <label for="imagefile">Select an Image file</label>
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <input type="file" class="form-control-file" id="imagefile" name="imagefile"> -->
-                            <!-- </div> -->
-                            <!-- <div class="form-group">
-                                    <label for="classtype">Select an Image file</label>
-                                    <select class="form-control form-control-lg" name="classtype">
-                                        <option>Malaria Cell Classification</option>
-                                        <option>Pneumonia Image Classification</option>
-                                    </select>
-                            </div> -->
-                            <!-- <button class="btn btn-primary" type="submit" > Predict</button>
-                        </form>
+            <header>
+                <div class="container">
+                    <div class="header d-lg-flex justify-content-between align-items-center">
+                        <div class="header-section">
+                            <h1>
+                                <a class="navbar-brand logo editContent" href="/">
+                                    <span class="fa fa-hospital-o"></span>webodoc
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="nav_section">
+                            <nav>
+                                <label for="drop" class="toggle mt-lg-0 mt-1"><span class="fa fa-bars" aria-hidden="true"></span></label>
+                                <input type="checkbox" id="drop" />
+                                <ul class="menu">
+                                    <li class="active"><a href="/">Home</a></li>
+                                    <li><a href="">About </a></li>
+                                    <li><a href="">Github</a></li>
+                                    
+                                </ul>
+                            </nav>
+                        </div>
 
+                    </div>
+                </div>
+            </header>
+            <!-- //header -->
+            <!-- banner -->
+            <section class="banner_w3pvt" id="home">
+                <div class="csslider infinity" id="slider1">
+                    <!-- <input type="radio" name="slides" checked="checked" id="slides_1" /> -->
+                    <!-- <input type="radio" name="slides" id="slides_2" />
+                    <input type="radio" name="slides" id="slides_3" />
+                    <input type="radio" name="slides" id="slides_4" /> -->
+                    <ul>
+                        <li>
+                            <div class="banner-top">
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="banner-info">
+                                                <div class="container text-center" style="margin-top: 20px;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="card" style="width: 30rem;">
+                                                                <div class="card-body">
+                                                                  <h5 class="card-title">Upload aother image</h5>
+                                                                  <!-- <p class="card-text"></p> -->
+                                                                  <form method="POST" enctype="multipart/form-data">
+                                                                    {% csrf_token %}
+                                                                    <div class="form-group">
+                                                                        <label for="clastype">Classification Type</label>
+                                                                          {{ form.category }}
+                                                                    </div>
+                                                                    <div class="form-group"> 
+                                                                        {{ form.image }}
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">Predict</button>
+                                                                  </form>
+
+                                                                </div>
+                                                              </div>
+                                                            
+                                                        </div>
+
+                                                        <!-- <div class="col-md-8">
+                                                            <div class="card" style="width: 40rem;">
+                                                                <img src="https://storage.googleapis.com/kagglesdsdata/datasets/17810/23812/chest_xray/test/PNEUMONIA/person100_bacteria_475.jpeg?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1571935998&Signature=InuOJ9h8bgMyWyZEjv%2BKjfXLg1QP9GdhGRdwDAVsfn1h3g3UjmyoGzGDiuw0JBHLkv%2FHXr45W8Yk6kJUD65AVHBMmgyTX%2F4286vtDQXVes5fKa2FbyNzPmvMF6GD852FrAjn8hwCVHw523wcfhJPh%2BiUgqaeFFyAf%2FnWMBhqOUbF6x6uVQe6wuhYrkUbh4CoBbBl0kIK4UNX83jXR4IF7C3UnAr4Z5oNy72XYxjsTjBDqQzFAVPPADGNro1I16auLhNUb%2BPu562%2BI30C42epRUxtEtAOpMscPgMbC94XCCQmxBA5Hqy6rNPYwZeoeUXH%2FODsFMhTRVekt2rBWjDDrg%3D%3D" class="card-img-top" alt="image to classify">
+                                                                <div class="card-body">
+                                                                  <h4 class="card-title text-info">PREDICTION: <span class="text-danger"> <b>INFECTIOUS</b></span></h4>
+                                                                  <h4 class="card-title text-info">PERCENTAGE PROBABILITY: <span class="text-primary"> <b>96%</b></span></h4>
+
+
+                                                                </div>
+                                                              </div>
+                                                            
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+  
+                </div>
+            </section>
+            <!-- //banner -->
+
+
+
+        </div>
+        <!-- //header -->
+        <!--/banner-bottom -->
+        
+        <!-- footer -->
+        <footer>
+            <div class="container">
+                <div class="row footer-top">
+                    <div class="col-lg-4 footer-grid_section_w3layouts">
+                        <h2 class="logo-2 mb-lg-4 mb-3">
+                            <a href="/"><span class="fa fa-hospital-o"></span>webodoc</a>
+                        </h2>
+                        <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+                        
+                    </div>
+                    <div class="col-lg-8 footer-right">
+                       
+                        <div class="row mt-lg-4 bottom-w3layouts-sec-nav mx-0">
+                            <div class="col-md-4 footer-grid_section_w3layouts">
+                                <h3 class="footer-title mb-lg-4 mb-3">Information</h3>
+                                <ul class="list-unstyled w3layouts-icons">
+                                    <li>
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="about.html">About Us</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="gallery.html">Github</a>
+                                    </li>
+                                
+                                    
+                                </ul>
+                            
+                        </div>
+
+                    </div>
+                </div>
             </div>
+        </footer>
+        <!-- //footer -->
+        <div class="cpy-right py-3">
+            <div class="container">
+                <div class="row">
+                    <p class="col-md-10 text-left">© 2019 WeboDoc. All rights reserved </p>
+                    <!-- move top icon -->
+                    <a href="#home" class="move-top text-lg-right text-center col-md-2"><span class="fa fa-angle-double-up" aria-hidden="true"></span></a>
+                    <!-- //move top icon -->
+                </div>
+            </div>
+
         </div>
 
-        <div> --> 
-
-           <div class="container text-center" style="margin-top: 20px;">
-               <div class="row">
-                   <div class="col-md-8">
-
-                    <form class="md-form">
-                        <div class="file-field">
-                          <div class="z-depth-1-half mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid"
-                              alt="example placeholder">
-                          </div>
-                          <div class="d-flex justify-content-center">
-                            <div class="btn btn-mdb-color btn-rounded float-left">
-                              <span>Choose file</span>
-                              <input type="file">
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                   </div>
-               </div>
-           </div>
 
     </div>
-    
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
