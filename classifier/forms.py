@@ -6,6 +6,6 @@ CATEGORY_CHOICE = (
 )
 
 
-class ClassifierImage(forms.Form):
+class ClassifierForm(forms.Form):
     image = forms.ImageField(required=True)
     category = forms.ChoiceField(choices=CATEGORY_CHOICE)
