@@ -13,19 +13,6 @@ def index(request):
 def about(request):
     return render(request, 'classifier/about.html')
 
-def predict(request):
-    form = ClassifierForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        m = Classifier()
-        m.image = form.cleaned_data['image']
-        print(type(form.cleaned_data['image']))
-        print("TYPE: " + form.cleaned_data['category'])
-        m.save()
-        
-        return HttpResponseRedirect('/predict')
-
-    return render(request, 'classifier/predict.html', {'form': form})
-
 def upload_img(request):
     form = ClassifierForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -35,6 +22,11 @@ def upload_img(request):
         print("TYPE: " + form.cleaned_data['category'])
         m.save()
         
-        return HttpResponseRedirect('/upload_img')
+        return HttpResponseRedirect('/classifier/predict')
 
     return render(request, 'classifier/upload_img.html', {'form': form})
+
+
+def predict(request):
+    
+    return render(request, 'classifier/result.html')
