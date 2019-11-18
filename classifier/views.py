@@ -23,7 +23,7 @@ media_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'media_cdn/images'
 
 # Model names
 pneumonia_model = './models/pneumonia_model.h5'
-malaria_model = './models/malaria.h5'
+malaria_model = './models/malaria_model.h5'
 
 # Create your views here.
 
@@ -52,18 +52,36 @@ def upload_img(request):
 def predict(request):
     # Preprocess image
     img_path = os.path.join(media_path, os.listdir(media_path)[0])
-    # pnue_model = os.path.join(model_path, os.listdir(model_path)[0])
 
     category = request.GET.get('category')
     print("IMAGE PATH: " + img_path)
     print("CATEGORY: " + request.GET.get('category'))
 
     if category == 'MC':
-        print("Classifier for malaria")
+        #Predict for Pnuemonia
+        img = preprocess_img(img_path, category='MC')
+        model = load_model(malaria_model)
+        print("Making Predictions on malaria cell image.....")
+        score = model.predict(img)
+        print("SCORE:" + str(score))
+
+        label_indx = np.argmax(score)
+        print("LABEL_INDEX: "+ str(label_indx))
+        accuracy = round(np.max(score), 2)
+
+        label = get_label_name(label_indx, "MC")
+        print("THE PREDICTED CLASS IS " + label + " WITH ACCURACY OF "+ str(accuracy))
+
+        context = {
+            'label': label,
+            'accuracy': accuracy,
+            'imagepath': img_path
+        }
+        
 
     else:
         #Predict for Pnuemonia
-        img = preprocess_img(img_path)
+        img = preprocess_img(img_path, category='PC')
         model = load_model(pneumonia_model)
         print("Making Predictions.....")
         score = model.predict(img)
@@ -71,9 +89,9 @@ def predict(request):
 
         label_indx = np.argmax(score)
         print("LABEL_INDEX: "+ str(label_indx))
-        accuracy = np.max(score)
+        accuracy = round(np.max(score), 2)
 
-        label = get_label_name(label_indx)
+        label = get_label_name(label_indx, "PC")
         print("THE PREDICTED CLASS IS " + label + " WITH ACCURACY OF "+ str(accuracy))
 
         context = {
@@ -84,10 +102,14 @@ def predict(request):
 
     return render(request, 'classifier/result.html', context)
 
-def preprocess_img(img):
+def preprocess_img(img, category):
     img = cv2.imread(img)
     img = Image.fromarray(img, 'RGB')
-    image = np.array(img.resize((150,150)))
+    if category == 'MC':
+        image = np.array(img.resize((100,100)))
+    else:
+        image = np.array(img.resize((150,150)))
+
     #process
     image = image/255
     final_img = []
@@ -96,11 +118,17 @@ def preprocess_img(img):
     return final_img
 
 
-def get_label_name(label):
-    if label==0:
-        return "NORMAL"
-    if label==1:
-        return "PNEUMONIA"
+def get_label_name(label, category):
+    if category == 'MC':
+        if label == 0:
+            return "NORMAL"
+        else:
+            return "INFECTED"
+    else:
+        if label == 0:
+            return "NORMAL"
+        else:
+            return "PNEUMONIA"
 
 
 def clean_path(request):
