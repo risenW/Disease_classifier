@@ -7,16 +7,16 @@ from .forms import ClassifierForm
 from .models import Classifier
 
 #import for deep learning
-from keras.models import load_model
-from PIL import Image
-from PIL import Image
-import numpy as np
-import os
-import cv2
+# from keras.models import load_model
+# from PIL import Image
+# from PIL import Image
+# import numpy as np
+# import os
+# import cv2
 
 #Fixes the path error thrown by load model in keras==2.3.1
-import keras.backend.tensorflow_backend as tb
-tb._SYMBOLIC_SCOPE.value = True
+# import keras.backend.tensorflow_backend as tb
+# tb._SYMBOLIC_SCOPE.value = True
 
 # Path to input image
 media_path = os.path.join(os.path.dirname(settings.BASE_DIR), 'media_cdn/images')
