@@ -1,8 +1,8 @@
 # Disease_classifier
 A Django powered image classifier for classifying Pnuemonia and Malaria cell infected images. 
 
-* [Link to the Research Paper on RESEARCHGATE](https://www.researchgate.net/publication/338681432_WeboDoc_A_Web_Based_Application_for_Classifying_Pneumonia_and_Malaria_Infected_Images)
-* [Link to the Research Poster for Data Science Nigeria AI bootcamp 2019](https://drive.google.com/file/d/1A7zRmTaEaeN5LtO3y9_44N56QfJ5BdFh/view)
+* [RESEARCH PAPER ON RESEARCHGATE](https://www.researchgate.net/publication/338681432_WeboDoc_A_Web_Based_Application_for_Classifying_Pneumonia_and_Malaria_Infected_Images)
+* [POSTER FOR DATA SCIENCE NIGERIA AI BOOTCAMP 2019](https://drive.google.com/file/d/1A7zRmTaEaeN5LtO3y9_44N56QfJ5BdFh/view)
 
 
 BASE ENVIRONMENT
