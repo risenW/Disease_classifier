@@ -3,6 +3,7 @@ A Django powered image classifier for classifying Pnuemonia and Malaria cell inf
 
 * [RESEARCH PAPER ON RESEARCHGATE](https://www.researchgate.net/publication/338681432_WeboDoc_A_Web_Based_Application_for_Classifying_Pneumonia_and_Malaria_Infected_Images)
 * [POSTER FOR DATA SCIENCE NIGERIA AI BOOTCAMP 2019](https://drive.google.com/file/d/1A7zRmTaEaeN5LtO3y9_44N56QfJ5BdFh/view)
+* [AI COMMONS HEALTH & WELL-BEING HACKATHON SOLUTION](https://www.datasciencenigeria.org/ai-commons-pneumonia-classification/)
 
 
 BASE ENVIRONMENT
